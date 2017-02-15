@@ -15,11 +15,23 @@
         <script type="text/javascript">
             var container=document.getElementById('container');
 
-            window.addEventListener('message',function(e){
-                if(e.source!=window.parent) return;
-                var color=container.style.backgroundColor;
-                window.parent.postMessage(color,'*');
-            },false);
+            if(window.addEventListener) {
+                window.addEventListener('message',function(e){
+                    console.log("in:addEventListener");
+                    if(e.source!=window.parent) return;
+                    var color=container.style.backgroundColor;
+                    window.parent.postMessage(color,'*');
+                },false);
+            } else {
+                //attachEvent
+                window.attachEvent('onmessage',function(e){
+                    console.log("in:attachEvent");
+                    if(e.source!=window.parent) return;
+                    var color=container.style.backgroundColor;
+                    window.parent.postMessage(color,'*');
+                });
+            }
+            
 
             function changeColor () {            
                 var color=container.style.backgroundColor;
