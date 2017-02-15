@@ -29,7 +29,9 @@
                     color='rgb(204,102,0)';
                 }
                 container.style.backgroundColor=color;
+                //跨域无法访问
                 window.parent.domain1_alert('domain2_alert');
+                //postMessage 实现跨域通讯    
                 window.parent.postMessage(color,'https://melunar.github.io/domain1/');
             }
         </script>
